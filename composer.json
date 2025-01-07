@@ -17,6 +17,15 @@
             "Hashcode\\laravelInstaller\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hashcode\\laravelInstaller\\Providers\\LaravelInstallerServiceProvider"
+            ]
+        }
+    },
+
     "minimum-stability": "stable",
     "prefer-stable": true
+
 }

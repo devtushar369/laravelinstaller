@@ -8,34 +8,47 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelInstallerServiceProvider extends ServiceProvider
 {
+    /**
+     * Register services.
+     *
+     * @return void
+     */
     public function register()
     {
-
+        // Merge default config
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/laravelinstaller.php',
+            'laravelinstaller'
+        );
     }
 
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
     public function boot()
     {
         // Load Routes
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
 
-        // Load views
+        // Load Views
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'laravelInstaller');
 
-        // Published assets
+        // Publish Assets
         $this->publishes([
-            __DIR__ . '/../Resources/assets' => public_path('vendor/laravel-installer')
-        ]);
+            __DIR__ . '/../Resources/assets' => public_path('vendor/laravel-installer'),
+        ], 'laravel-installer-assets');
 
-        $this->mergeConfigFrom(
-            __DIR__ . '/../config/laravelinstaller.php',
-            'laravelinstaller'
-        );
-
+        // Publish Config File
         $this->publishes([
             __DIR__ . '/../config/laravelinstaller.php' => config_path('laravelinstaller.php'),
-        ], 'laravel-installer');
+        ], 'laravel-installer-config');
 
-        // Register middleware
-        $this->app['router']->pushMiddlewareToGroup('installer', InstallerMiddleware::class);
+        // Register Middleware
+        $router = $this->app['router'];
+        if (method_exists($router, 'middlewareGroup')) {
+            $router->pushMiddlewareToGroup('installer', InstallerMiddleware::class);
+        }
     }
 }
