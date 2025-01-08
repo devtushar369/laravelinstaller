@@ -1,5 +1,5 @@
 {
-    "name": "hashcode/laravel-instller",
+    "name": "hashcode/laravel-installer",
     "description": "A web-based Laravel installer package that simplifies project setup and configuration, enabling developers to start their projects quickly without using the command line.",
     "type": "library",
     "license": "MIT",
@@ -10,7 +10,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
     "autoload": {
         "psr-4": {
             "Hashcode\\laravelInstaller\\": "src/"
