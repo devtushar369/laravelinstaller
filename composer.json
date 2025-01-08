@@ -2,6 +2,7 @@
     "name": "hashcode/laravel-instller",
     "description": "A web-based Laravel installer package that simplifies project setup and configuration, enabling developers to start their projects quickly without using the command line.",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "devtushar369",
@@ -25,7 +26,5 @@
         }
     },
 
-    "minimum-stability": "stable",
-    "prefer-stable": true
-
+    "minimum-stability": "dev"
 }
